@@ -143,7 +143,7 @@ public class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         }
     }
     @IBAction func crawl(_ sender: UIButton) {
-        SpeakToMe.crawl(query: "Ive got the eyes of a tiger")
+        SpeakToMe.crawl(query: "so close no matter how far")
     }
     
 }
