@@ -21,9 +21,16 @@ func crawl(query: String){
         do {
             let doc: Document = try SwiftSoup.parse(myHTMLString)
             guard let results : Elements = try? doc.getElementsByClass("g") else {return}
-            for result: Element in results {
-                print(try result.text() + "\n")
+            guard let urls : Elements = try? doc.getElementsByTag("cite") else {return}
+            for url: Element in urls{
+                if try url.text().lowercased().contains("soundcloud") || url.text().lowercased().contains("youtube")||url.text().lowercased().contains("metrolyrics") || url.text().lowercased().contains("genius") {
+                    print(try url.text() + "\n")
+                }
+                
             }
+          //  for result: Element in results {
+            //    print(try result.text() + "\n")
+            //}
             
         } catch Exception.Error(let message) {
             print(message)
