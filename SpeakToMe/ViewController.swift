@@ -24,12 +24,20 @@ public class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     
     @IBOutlet var recordButton : UIButton!
     
+    @IBOutlet weak var findSong: UIButton!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     // MARK: UIViewController
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         // Disable the record buttons until authorization has been granted.
         recordButton.isEnabled = false
+        recordButton.layer.cornerRadius = 20
+        //backgroundImageView.transform = backgroundImageView.transform.rotated(by: CGFloat(CGFloat.pi/1))
+        recordButton.layer.borderWidth = 1.5
+        findSong.layer.borderWidth = 0.55
+        findSong.layer.cornerRadius = 10
+
     }
     
     override public func viewDidAppear(_ animated: Bool) {
@@ -145,6 +153,12 @@ public class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     @IBAction func crawl(_ sender: UIButton) {
         SpeakToMe.crawl(query: "Ive got the eyes of a tiger")
     }
+    
+    
+   
+    
+    
+   
     
 }
 
