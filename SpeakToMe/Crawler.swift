@@ -11,7 +11,7 @@ import SwiftSoup
 
 func crawl(query: String){
     let input = query.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
-    let url = "http://www.metrolyrics.com/search.html?search=\(input)"
+    let url = "https://www.google.com/search?q=\(input)"
     guard let myURL = URL(string: url) else {
         print("Error: \(url) doesn't seem to be a valid URL")
         return
@@ -20,9 +20,9 @@ func crawl(query: String){
         let myHTMLString = try String(contentsOf: myURL, encoding: .ascii)
         do {
             let doc: Document = try SwiftSoup.parse(myHTMLString)
-            guard let results : Elements = try? doc.getElementsByClass("ng-binding") else {return}
+            guard let results : Elements = try? doc.getElementsByClass("g") else {return}
             for result: Element in results {
-                print(try result.text())
+                print(try result.text() + "\n")
             }
             
         } catch Exception.Error(let message) {
