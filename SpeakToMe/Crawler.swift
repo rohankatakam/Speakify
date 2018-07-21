@@ -30,7 +30,7 @@ func crawl(query: String){
             }
           //  for result: Element in results {
             //    print(try result.text() + "\n")
-            //}
+            //gd}
             
         } catch Exception.Error(let message) {
             print(message)
