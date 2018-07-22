@@ -75,7 +75,7 @@ class SecondViewController: UIViewController {
         for i in 0...a - 1
         {
             getSongTitleAndArtistFromLastFM(rawSongName: getSongName(title: results[i]))
-            if albumArt.characters.count > 0 && string1 != songArtist && string2 != songArtist && string3 != songArtist && string4 != songArtist && string5 != songArtist && songArtist.lowercased().range(of:"lyric") == nil && songArtist.lowercased().range(of:"lyrics") == nil && songArtist.lowercased().range(of:"/") == nil && songArtist.lowercased().range(of:"-") == nil && songName.lowercased().range(of:"/") == nil && songName.lowercased().range(of:"-") == nil
+            if albumArt.characters.count > 0 && string1 != songArtist && string2 != songArtist && string3 != songArtist && string4 != songArtist && string5 != songArtist && songArtist.lowercased().range(of:"lyric") == nil && songArtist.lowercased().range(of:"lyrics") == nil && songArtist.lowercased().range(of:"/") == nil && songName.lowercased().range(of:"/") == nil && songName.lowercased().range(of:"-") == nil
             {
                 count += 1
             
@@ -122,6 +122,7 @@ class SecondViewController: UIViewController {
             }
             
             }
+           
             if labelOne.text == ""
             {
                 print("Nihihihihihihihi")
