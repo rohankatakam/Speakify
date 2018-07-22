@@ -9,7 +9,7 @@
 import UIKit
 import Speech
 
-public class ViewController: UIViewController, SFSpeechRecognizerDelegate {
+public class ViewController: UIViewController, SFSpeechRecognizerDelegate, UITextViewDelegate {
     // MARK: Properties
     
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
@@ -30,12 +30,14 @@ public class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     public override func viewDidLoad() {
         super.viewDidLoad()
         // Disable the record buttons until authorization has been granted.
+        self.textView.delegate = self
         recordButton.isEnabled = false
         recordButton.layer.cornerRadius = 20
         recordButton.layer.borderWidth = 1.5
         findSong.layer.borderWidth = 0.55
         findSong.layer.cornerRadius = 10
-        
+        let navbar = UINavigationBar.appearance()
+        navbar.barTintColor = UIColor(red: 22.0/255, green: 33.0/255, blue:      37.0/255, alpha: 1)
     }
     
     override public func viewDidAppear(_ animated: Bool) {
@@ -153,7 +155,23 @@ public class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     override public func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         let nvc = segue.destination as! SecondViewController
-        nvc.results = SpeakToMe.crawl(query: textView.text)
+        if textView.text == ""
+        {
+            nvc.results = SpeakToMe.crawl(query: "Baby don't hurt me, no more")
+        }
+        else
+        {
+            nvc.results = SpeakToMe.crawl(query: textView.text)
+        }
+        
+    }
+    
+    public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
     
 //    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

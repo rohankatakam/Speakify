@@ -11,6 +11,7 @@ import SwiftSoup
 
 class SecondViewController: UIViewController {
   
+    @IBOutlet weak var sorryButton: UILabel!
     @IBOutlet weak var wrongResultButton: UIButton!
     @IBOutlet weak var labelOne: UILabel!
     @IBOutlet weak var labelTwo: UILabel!
@@ -29,19 +30,25 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var artistThree: UILabel!
     @IBOutlet weak var artistFour: UILabel!
     @IBOutlet weak var artistFive: UILabel!
-    var string1 = ""
-    var string2 = ""
-    var string3 = ""
-    var string4 = ""
-    var string5 = ""
-    var count = -1
-    var a = 5
-    var results : [String] = []
+        var results : [String] = []
     var songName: String = ""
     var songArtist: String = ""
     var albumArt: String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        var string1 = ""
+        var string2 = ""
+        var string3 = ""
+        var string4 = ""
+        var string5 = ""
+        var count = -1
+        var a = 5
+
+        imageOne.image = nil
+        imageTwo.image = nil
+        imageThree.image = nil
+        imageFour.image = nil
+        imageFive.image = nil
         labelOne.text = ""
         labelTwo.text = ""
         labelThree.text = ""
@@ -52,8 +59,14 @@ class SecondViewController: UIViewController {
         artistThree.text = ""
         artistFour.text = ""
         artistFive.text = ""
+        sorryButton.text = ""
         wrongResultButton.layer.borderWidth = 0.55
         wrongResultButton.layer.cornerRadius = 10
+        if results.count == 0
+        {
+            sorryButton.text = "Sorry, there are no avaiable results"
+        }
+        else{
         if results.count < 5
         {
             a = results.count
@@ -103,9 +116,18 @@ class SecondViewController: UIViewController {
                 string5 = songArtist
          
             }
+            
                 
                 
             }
+            
+            }
+            if labelOne.text == ""
+            {
+                print("Nihihihihihihihi")
+                sorryButton.text = "Sorry, there aren't any available results"
+            }
+            
         }
        
 
@@ -115,34 +137,97 @@ class SecondViewController: UIViewController {
     
     @IBAction func newResultButton(_ sender: UIButton) {
         
-        
-     var url = "https://www.google.com/search?&q=\(SpeakToMe.getInputForOtherFiles())"
-        guard let myURL = URL(string: url) else {
-            print("Error: \(url) doesn't seem to be a valid URL")
-            return
-        }
-        
-        do {
-            let myHTMLString = try String(contentsOf: myURL, encoding: .ascii)
-            do {
-                let doc: Document = try SwiftSoup.parse(myHTMLString)
-                 let searchAgainFirstElement : Element? = try doc.select("p.nVcaUb").first()
-                print(try searchAgainFirstElement?.text())
 
-                SpeakToMe.crawl(query: (try searchAgainFirstElement?.text())!)
-                
-                
-            } catch Exception.Error(let type, let message) {
-                print(message)
-            } catch {
-                print("error")
-            }
-            //print("HTML : \(myHTMLString)")
-        } catch let error {
-            print("Error: \(error)")
+        results = SpeakToMe.crawl(query: SpeakToMe.getSearchAgainFirstElement())
+        var string1 = ""
+        var string2 = ""
+        var string3 = ""
+        var string4 = ""
+        var string5 = ""
+        var count = -1
+        var a = 5
+        
+        imageOne.image = nil
+        imageTwo.image = nil
+        imageThree.image = nil
+        imageFour.image = nil
+        imageFive.image = nil
+        labelOne.text = ""
+        labelTwo.text = ""
+        labelThree.text = ""
+        labelFour.text = ""
+        labelFive.text = ""
+        artistOne.text = ""
+        artistTwo.text = ""
+        artistThree.text = ""
+        artistFour.text = ""
+        artistFive.text = ""
+        sorryButton.text = ""
+        wrongResultButton.layer.borderWidth = 0.55
+        wrongResultButton.layer.cornerRadius = 10
+        if results.count == 0
+        {
+            sorryButton.text = "Sorry, there are no available results"
+        }
+        else{
+        if results.count < 5
+        {
+            a = results.count
         }
         
-      
+        for i in 0...a - 1
+        {
+            getSongTitleAndArtistFromLastFM(rawSongName: getSongName(title: results[i]))
+            if albumArt.characters.count > 0 && string1 != songArtist && string2 != songArtist && string3 != songArtist && string4 != songArtist && string5 != songArtist && songArtist.lowercased().range(of:"lyric") == nil && songArtist.lowercased().range(of:"lyrics") == nil && songArtist.lowercased().range(of:"/") == nil && songArtist.lowercased().range(of:"-") == nil && songName.lowercased().range(of:"/") == nil && songName.lowercased().range(of:"-") == nil
+            {
+                count += 1
+                
+                if count == 0
+                {
+                    string1 = songArtist
+                    labelOne.text = songName
+                    get_image(albumArt, imageOne)
+                    artistOne.text = songArtist
+                    string1 = songArtist
+                }
+                if count == 1
+                {
+                    labelTwo.text = songName
+                    get_image(albumArt, imageTwo)
+                    artistTwo.text = songArtist
+                    string2 = songArtist
+                }
+                if count == 2
+                {
+                    labelThree.text = songName
+                    get_image(albumArt, imageThree)
+                    artistThree.text = songArtist
+                    string3 = songArtist
+                }
+                if count == 3
+                {
+                    labelFour.text = songName
+                    get_image(albumArt, imageFour)
+                    artistFour.text = songArtist
+                    string4 = songArtist
+                }
+                if count == 4
+                {
+                    labelFive.text = songName
+                    get_image(albumArt, imageFive)
+                    artistFive.text = songArtist
+                    string5 = songArtist
+                    
+                }
+            }
+            
+            }
+            if labelOne.text == ""
+            {
+                print("Nihihihihihihihi")
+                sorryButton.text = "Sorry, there aren't any available results"
+            }
+        }
         
     }
     
@@ -196,18 +281,22 @@ class SecondViewController: UIViewController {
     func getSongName(title: String) -> String{
         var songName = ""
         
+        
         if title.contains(" - ") {
             songName = title.components(separatedBy: " - ")[1]
             if(songName.contains(" | ")){
                 songName = songName.components(separatedBy: " | ")[0]
                 
             }
+            
+            
+            
             print("RAW SONG NAME****");
             print(songName + "\n")
             
         }
             
-        else if title.contains(" – "){
+        if title.contains(" – "){
             songName = title.components(separatedBy: " – ")[1]
             if(songName.contains(" | ")){
                 songName = songName.components(separatedBy: " | ")[0]
@@ -215,6 +304,11 @@ class SecondViewController: UIViewController {
             print("RAW SONG NAME****");
             print(songName + "\n")
         }
+        
+        if title.contains("Lyrics") {
+            songName =  songName.replacingOccurrences(of: "Lyrics", with: "", options: .literal, range: nil)
+        }
+        
         
         songName = songName.replacingOccurrences(of: "\\s?\\([\\w\\s]*\\)", with: "", options: .regularExpression)
         
@@ -288,10 +382,11 @@ class SecondViewController: UIViewController {
                         print("SONG ARTIST RESULTING FROM API CALL****");
                         print(songArtist + "\n")
                         
-                        albumArt = trackArray[0]["image"][0]["#text"].string!
+                        albumArt = trackArray[0]["image"][2]["#text"].string!
                         print("SONG ALBUM ART URL RESULTING FROM API CALL****");
                         print(albumArt + "\n")
                     }
+                  
                 }
             }
             
