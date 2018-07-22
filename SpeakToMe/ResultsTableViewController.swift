@@ -56,8 +56,8 @@ class ResultsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath)
-        var songName = getSongTitle(songName: getSongName(title: results[indexPath.row]))
-        var songArtist = getArtistName(title: songName)
+        let songName = getSongTitle(songName: getSongName(title: results[indexPath.row]))
+        let songArtist = getArtistName(title: songName)
         var albumArt = getAlbumArt(songName: songName)
         cell.textLabel?.text = songName
         cell.detailTextLabel?.text = songArtist
