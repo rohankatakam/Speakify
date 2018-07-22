@@ -22,6 +22,7 @@ public class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     
     @IBOutlet var textView : UITextView!
     
+    @IBOutlet weak var findSong: UIButton!
     @IBOutlet var recordButton : UIButton!
     
     // MARK: UIViewController
@@ -30,6 +31,11 @@ public class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         super.viewDidLoad()
         // Disable the record buttons until authorization has been granted.
         recordButton.isEnabled = false
+        recordButton.layer.cornerRadius = 20
+        recordButton.layer.borderWidth = 1.5
+        findSong.layer.borderWidth = 0.55
+        findSong.layer.cornerRadius = 10
+        
     }
     
     override public func viewDidAppear(_ animated: Bool) {
@@ -135,7 +141,6 @@ public class ViewController: UIViewController, SFSpeechRecognizerDelegate {
             audioEngine.stop()
             recognitionRequest?.endAudio()
             recordButton.isEnabled = false
-            performSegue(withIdentifier: "modalResults", sender: nil)
             recordButton.setTitle("Stopping", for: .disabled)
         } else {
             try! startRecording()
@@ -143,15 +148,18 @@ public class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         }
     }
     
-    @IBAction func crawl(_ sender: UIButton) {
-        print(SpeakToMe.crawl(query: "I'm in the coupe for sure"))
-        performSegue(withIdentifier: "modalResults", sender: nil)
+   
+    
+    override public func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        let nvc = segue.destination as! SecondViewController
+        nvc.results = SpeakToMe.crawl(query: textView.text)
     }
     
-    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let dvc = segue.destination as! ResultsTableViewController
-        dvc.results = SpeakToMe.crawl(query: textView.text)
-    }
+//    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let dvc = segue.destination as! SecondViewController
+//        dvc.results = SpeakToMe.crawl(query: "party rock is in the house tonight")
+//    }
     
 }
 

@@ -13,6 +13,7 @@
 		7539A4761CE7A57600505E8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7539A4741CE7A57600505E8B /* Main.storyboard */; };
 		7539A4781CE7A57600505E8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7539A4771CE7A57600505E8B /* Assets.xcassets */; };
 		7539A47B1CE7A57600505E8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7539A4791CE7A57600505E8B /* LaunchScreen.storyboard */; };
+		D73F11552104675700CA904F /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73F11542104675700CA904F /* SecondViewController.swift */; };
 		D7FAD37C2102A4AD00BEF07D /* Crawler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FAD37B2102A4AD00BEF07D /* Crawler.swift */; };
 		D7FAD3802103C70400BEF07D /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FAD37F2103C70400BEF07D /* ResultsTableViewController.swift */; };
 		D7FAD3822103E73900BEF07D /* SwiftyJSON-1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FAD3812103E73900BEF07D /* SwiftyJSON-1.swift */; };
@@ -29,6 +30,7 @@
 		7539A47A1CE7A57600505E8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7539A47C1CE7A57600505E8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B56B3B031CEB85E1001766E2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D73F11542104675700CA904F /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		D7FAD37B2102A4AD00BEF07D /* Crawler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crawler.swift; sourceTree = "<group>"; };
 		D7FAD37F2103C70400BEF07D /* ResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
 		D7FAD3812103E73900BEF07D /* SwiftyJSON-1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SwiftyJSON-1.swift"; path = "../../../Desktop/APi Hackwich/APi Hackwich/SwiftyJSON-1.swift"; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				7539A4701CE7A57600505E8B /* AppDelegate.swift */,
 				7539A4721CE7A57600505E8B /* ViewController.swift */,
 				D7FAD37B2102A4AD00BEF07D /* Crawler.swift */,
+				D73F11542104675700CA904F /* SecondViewController.swift */,
 				D7FAD37F2103C70400BEF07D /* ResultsTableViewController.swift */,
 				D7FAD3812103E73900BEF07D /* SwiftyJSON-1.swift */,
 				7539A4741CE7A57600505E8B /* Main.storyboard */,
@@ -214,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D73F11552104675700CA904F /* SecondViewController.swift in Sources */,
 				D7FAD3802103C70400BEF07D /* ResultsTableViewController.swift in Sources */,
 				D7FAD37C2102A4AD00BEF07D /* Crawler.swift in Sources */,
 				7539A4731CE7A57600505E8B /* ViewController.swift in Sources */,

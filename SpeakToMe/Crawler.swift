@@ -9,17 +9,15 @@
 import Foundation
 import SwiftSoup
 
-struct songs {
-    static var titleList : [String] = []
-    static var urlList: [String] = []
-}
+
+var inputForOtherFiles: String = ""
 
 func crawl(query: String) -> [String]{
+    var titleList : [String] = []
     var input = query.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
-    songs.titleList = []
-    songs.urlList = []
-    
-    input = input.replacingOccurrences(of: "'", with: "%27", options: .literal, range: nil)
+    input = input.replacingOccurrences(of: "’", with: "%27", options: .literal, range: nil)
+    input = input.replacingOccurrences(of: ",", with: "%2C", options: .literal, range: nil)
+    inputForOtherFiles = input;
     
     var url = "https://www.google.com/search?&q=\(input)"
     guard let myURL = URL(string: url) else {
@@ -33,16 +31,15 @@ func crawl(query: String) -> [String]{
             guard let results : Elements = try? doc.getElementsByClass("g") else {return []}
             guard let titles : Elements = try? doc.getElementsByTag("h3") else {return []}
             guard let urls : Elements = try? doc.getElementsByTag("cite") else {return []}
+            
             var count = 0;
-            //for title: Element in titles{
-            
-            
-            //}
+ 
             for url: Element in urls{
-                if try url.text().lowercased().contains("soundcloud") || url.text().lowercased().contains("youtube")||url.text().lowercased().contains("metrolyrics") || url.text().lowercased().contains("genius") || url.text().lowercased().contains("azlyrics") || url.text().lowercased().contains("lyrics")||url.text().lowercased().contains("song"){
-                    songs.titleList.append(try titles.get(count).text())
-                    songs.urlList.append(try url.text())
-                    //print(try url.text() + "\n")
+                if try url.text().lowercased().contains("soundcloud") || url.text().lowercased().contains("youtube")||url.text().lowercased().contains("metrolyrics") || url.text().lowercased().contains("genius") || url.text().lowercased().contains("azlyrics"){
+                    if(try titles.get(count).text().contains(" - ") || titles.get(count).text().contains(" – ")){
+                        titleList.append(try titles.get(count).text())
+                        
+                    }
                 }
                 count+=1;
                 
@@ -57,8 +54,12 @@ func crawl(query: String) -> [String]{
     } catch let error {
         print("Error: \(error)")
     }
-    
-    return songs.titleList
+    print(titleList.count)
+    return titleList
 }
 
+func getInputForOtherFiles() -> String{
+    print(inputForOtherFiles)
+    return inputForOtherFiles
+}
 
