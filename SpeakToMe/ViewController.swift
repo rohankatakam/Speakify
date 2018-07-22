@@ -38,7 +38,7 @@ public class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         findSong.layer.borderWidth = 0.55
         findSong.layer.cornerRadius = 10
 
-    }r
+    }
     
     override public func viewDidAppear(_ animated: Bool) {
         speechRecognizer.delegate = self
