@@ -7,7 +7,15 @@ Speakify can be used to correctly recognize song lyrics based on voice recogniti
 Speakify was developed in 2018 using Swift and Ruby. Currently, the app is only available for iOS products.
 
 ## Location
-We are currently located in Chicago, IL. Our team consists of students from across the Chicagoland area.
+We are currently located in Chicago, IL. 
+
+## Team
+Rohan Katakam
+Aarthi Koripelly 
+Kartik Sarangmath
+Ishaan Sehgal
+Ananya Sehgal
+
 ![alt text](http://speakify.tech/launch_screen_simulator.png)
 
 ### Build
