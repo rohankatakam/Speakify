@@ -10,10 +10,10 @@ Speakify was developed in 2018 using Swift and Ruby. Currently, the app is only 
 We are currently located in Chicago, IL. 
 
 ## Team
-Rohan Katakam
-Aarthi Koripelly 
-Kartik Sarangmath
-Ishaan Sehgal
+Rohan Katakam |
+Aarthi Koripelly |
+Kartik Sarangmath |
+Ishaan Sehgal |
 Ananya Sehgal
 
 ![alt text](http://speakify.tech/launch_screen_simulator.png)
